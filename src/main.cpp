@@ -20,11 +20,9 @@ void setup()
   pot = analogRead(A0);
   for (int ndx = 0; ndx < SMOOTHING_SIZE; ndx++)
     pot_vals[ndx] = pot;
-  rightServo.attach(rightServoPin);
-  leftServo.attach(leftServoPin);
   speed = map(pot, 0, 1023, 0, 180);
-  rightServo.write(speed);
-  leftServo.write(speed);
+  rightServo.attach(rightServoPin, 1000, 2000, speed);
+  leftServo.attach(leftServoPin, 1000, 2000, speed);
 }
 
 int avgInts(const int *intArray, const int length)
